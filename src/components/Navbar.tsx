@@ -5,15 +5,15 @@ import { usePathname } from "next/navigation";
 
 const NavLinks = [
   {
-    name: "Search",
+    name: "SEARCH",
     href: "/",
   },
   {
-    name: "List",
+    name: "LIST",
     href: "/list",
   },
   {
-    name: "Detail",
+    name: "DETAIL",
     href: "/detail",
   },
 ];

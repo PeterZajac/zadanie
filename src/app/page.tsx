@@ -1,9 +1,18 @@
-import Image from "next/image";
+import SearchBar from "@/components/SearchBar";
 
-export default function Home() {
+const fetchData = async () => {
+  const response = await fetch("https://www.fruityvice.com/api/fruit/all");
+  const data = await response.json();
+  console.log(data);
+};
+fetchData();
+
+export default function Home({ fruits }: { fruits: any[] }) {
   return (
-    <div className="container">
-      <h1>cavko</h1>
+    <div className="flex flex-col justify-center items-center mt-40">
+      {/* sem pojde obrázok citrónu */}
+      <h1 className="text-4xl font-bold mb-4">SEARCH</h1>
+      <SearchBar fruits={fruits} />
     </div>
   );
 }
