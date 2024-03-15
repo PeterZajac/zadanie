@@ -16,7 +16,7 @@ const SearchBar: FC<FruitProps> = ({ data }) => {
     );
 
     if (searchFruit) {
-      setSearchResult("Success");
+      setSearchResult("Success: Fruit found.");
     } else {
       setSearchResult("Error: Fruit not found.");
     }
@@ -25,12 +25,24 @@ const SearchBar: FC<FruitProps> = ({ data }) => {
       setSearchResult(null);
     }
   };
+  const inputBaseClasses =
+    "flex-auto rounded border border-solid border-neutral-700 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal outline-none  placeholder:text-neutral-500";
+
+  let borderClass;
+  if (searchResult === "Error: Fruit not found.") {
+    borderClass = "border-red-500 text-red-300";
+  } else if (searchResult === "Success: Fruit found.") {
+    borderClass = "border-green-500 text-green-300";
+  } else {
+    borderClass = "border-neutral-700";
+  }
+  const finalClassName = `${inputBaseClasses} ${borderClass}`;
 
   return (
-    <div className="relative flex">
+    <div className="flex">
       <input
         type="search"
-        className="relative m-0 block flex-auto rounded border border-solid border-neutral-700 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-surface outline-none transition duration-200 ease-in-out placeholder:text-neutral-500 focus:z-[3] focus:border-primary focus:shadow-inset focus:outline-none motion-reduce:transition-none dark:border-white/10 dark:text-white dark:placeholder:text-neutral-200 dark:autofill:shadow-autofill dark:focus:border-primary"
+        className={finalClassName}
         placeholder="Search"
         aria-label="Search"
         id="exampleFormControlInput2"
@@ -38,7 +50,6 @@ const SearchBar: FC<FruitProps> = ({ data }) => {
         value={searchTerm}
         onChange={handleInputChange}
       />
-
       <button onClick={handleButtonClick}>
         <span
           className="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5"
@@ -59,32 +70,15 @@ const SearchBar: FC<FruitProps> = ({ data }) => {
           </svg>
         </span>
       </button>
-
-      {searchResult && <div className="search-result">{searchResult}</div>}
+      {searchResult && (
+        <div>
+          {searchResult === "Error: Fruit not found." && (
+            <span className="text-red-500 text-sm mt-1">{searchResult}</span>
+          )}
+        </div>
+      )}
     </div>
   );
 };
 
 export default SearchBar;
-
-// <div className="flex flex-row justify-center items-center ">
-//   <div className="pt-2 text-gray-600">
-//     <input
-//       className="bg-[#0f0b17] h-10 px-1 rounded-lg text-sm focus:outline-none relative"
-//       type="search"
-//       name="search"
-//       placeholder="Search"
-//     />
-//     <button type="submit">
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         fill="none"
-//         viewBox="0 0 24 24"
-//         stroke="currentColor"
-//         className="h-5 w-5 text-white"
-//       >
-//         <path d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-//       </svg>
-//     </button>
-//   </div>
-// </div>
