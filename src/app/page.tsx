@@ -1,18 +1,19 @@
-import SearchBar from "@/components/SearchBar";
+import MainScreen from "@/components/MainScreen";
 
-const fetchData = async () => {
-  const response = await fetch("https://www.fruityvice.com/api/fruit/all");
-  const data = await response.json();
-  console.log(data);
+const fetchFruits = async () => {
+  const res = await fetch("https://www.fruityvice.com/api/fruit/all");
+  return res.json();
 };
-fetchData();
 
-export default function Home({ fruits }: { fruits: any[] }) {
+const Home = async () => {
+  const fruits = await fetchFruits();
+  //state
   return (
     <div className="flex flex-col justify-center items-center mt-40">
-      {/* sem pojde obrázok citrónu */}
       <h1 className="text-4xl font-bold mb-4">SEARCH</h1>
-      <SearchBar fruits={fruits} />
+      <MainScreen data={fruits} />
     </div>
   );
-}
+};
+
+export default Home;
