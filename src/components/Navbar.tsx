@@ -1,18 +1,45 @@
+"use client";
 import Link from "next/link";
 import React from "react";
+import { usePathname } from "next/navigation";
+
+const NavLinks = [
+  {
+    name: "Search",
+    href: "/",
+  },
+  {
+    name: "List",
+    href: "/list",
+  },
+  {
+    name: "Detail",
+    href: "/detail",
+  },
+];
 
 const Navbar = () => {
+  const pathname = usePathname();
+  const isActive = (href: string) => {
+    return pathname === href;
+  };
   return (
     <nav className="bg-[#0a0810] flex flex-row justify-center items-center p-4 gap-8">
-      <Link href="#">
-        <h1 className="text-slate-500 hover:text-white">Search</h1>
-      </Link>
-      <Link href="/list">
-        <h1 className="text-slate-500 hover:text-white">List</h1>
-      </Link>
-      <Link href="/detail">
-        <h1 className="text-slate-500 hover:text-white">Detail</h1>
-      </Link>
+      {NavLinks.map((link) => {
+        return (
+          <Link href={link.href} key={link.name}>
+            <h1
+              className={
+                isActive(link.href)
+                  ? "text-white"
+                  : "text-slate-500 hover:text-whit"
+              }
+            >
+              {link.name}
+            </h1>
+          </Link>
+        );
+      })}
     </nav>
   );
 };
