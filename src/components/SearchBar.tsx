@@ -42,7 +42,7 @@ const SearchBar: FC<FruitProps> = ({ data }) => {
     <div className="flex flex-col">
       <div className="flex">
         <input
-          type="search"
+          type="text"
           className={finalClassName}
           placeholder="Search"
           value={searchTerm}
