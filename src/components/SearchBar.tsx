@@ -16,7 +16,7 @@ const SearchBar: FC<FruitProps> = ({ data }) => {
     );
 
     if (searchFruit) {
-      setSearchResult("Success: Fruit found.");
+      setSearchResult("Success");
     } else {
       setSearchResult("Error: Fruit not found.");
     }
@@ -26,12 +26,12 @@ const SearchBar: FC<FruitProps> = ({ data }) => {
     }
   };
   const inputBaseClasses =
-    "flex-auto rounded border border-solid border-neutral-700 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal outline-none  placeholder:text-neutral-500";
+    "flex-auto rounded border border-solid border-neutral-700 bg-transparent pl-3 outline-none  placeholder:text-neutral-500";
 
   let borderClass;
   if (searchResult === "Error: Fruit not found.") {
     borderClass = "border-red-500 text-red-300";
-  } else if (searchResult === "Success: Fruit found.") {
+  } else if (searchResult === "Success") {
     borderClass = "border-green-500 text-green-300";
   } else {
     borderClass = "border-neutral-700";
@@ -45,15 +45,12 @@ const SearchBar: FC<FruitProps> = ({ data }) => {
           type="search"
           className={finalClassName}
           placeholder="Search"
-          aria-label="Search"
-          id="exampleFormControlInput2"
-          aria-describedby="button-addon2"
           value={searchTerm}
           onChange={handleInputChange}
         />
         <button onClick={handleButtonClick}>
           <span
-            className="flex items-center whitespace-nowrap px-3 py-[0.25rem] text-surface dark:border-neutral-400 dark:text-white [&>svg]:h-5 [&>svg]:w-5"
+            className="flex items-center pl-3 text-surface [&>svg]:h-5 [&>svg]:w-5"
             id="button-addon2"
           >
             <svg

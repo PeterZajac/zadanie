@@ -10,7 +10,6 @@ const Home = async () => {
   //state
   return (
     <div className="flex flex-col justify-center items-center mt-40">
-      <h1 className="text-4xl font-bold mb-4">SEARCH</h1>
       <MainScreen data={fruits} />
     </div>
   );
