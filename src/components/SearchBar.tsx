@@ -3,6 +3,7 @@ import React, { FC, useState } from "react";
 import { FruitProps } from "@/types/fruitsType";
 
 const SearchBar: FC<FruitProps> = ({ data }) => {
+  console.log(data);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState<string | null>(null);
 
@@ -30,9 +31,9 @@ const SearchBar: FC<FruitProps> = ({ data }) => {
 
   let borderClass;
   if (searchResult === "Error: Fruit not found.") {
-    borderClass = "border-red-500 text-red-300";
+    borderClass = "border-red-400 text-red-300";
   } else if (searchResult === "Success") {
-    borderClass = "border-green-500 text-green-300";
+    borderClass = "border-green-400 text-green-300";
   } else {
     borderClass = "border-neutral-700";
   }

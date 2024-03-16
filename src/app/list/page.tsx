@@ -10,7 +10,7 @@ const ListPage = async () => {
   const fruits = await fetchFruits();
 
   return (
-    <div className="flex flex-col justify-center items-center mt-40 ">
+    <div className="flex flex-col justify-center items-center mt-20 ">
       <h1>ALL</h1>
       <h1 className="text-4xl font-bold ">FRUIT LIST</h1>
       <ListTable data={fruits} />
