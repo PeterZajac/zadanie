@@ -6,6 +6,6 @@ body{
   background: linear-gradient(to bottom, #0f0b17, #0a0810);
   height: 100vh;
   color: white;
-font-family: 'Roboto', sans-serif;
-
+  font-family: "Inter", sans-serif !important
 }
+

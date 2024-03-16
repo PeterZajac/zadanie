@@ -7,7 +7,6 @@ const fetchFruits = async () => {
 
 const Home = async () => {
   const fruits = await fetchFruits();
-  //state
   return (
     <div className="flex flex-col justify-center items-center mt-40">
       <MainScreen data={fruits} />
