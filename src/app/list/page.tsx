@@ -8,13 +8,12 @@ const fetchFruits = async () => {
 
 const ListPage = async () => {
   const fruits = await fetchFruits();
-  console.log(fruits);
 
   return (
     <div className="flex flex-col justify-center items-center mt-40 ">
       <h1>ALL</h1>
       <h1 className="text-4xl font-bold ">FRUIT LIST</h1>
-      <ListTable />
+      <ListTable data={fruits} />
     </div>
   );
 };
