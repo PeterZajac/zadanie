@@ -1,7 +1,15 @@
 import ListTable from "@/components/ListTable";
 import React from "react";
 
-const ListPage = () => {
+const fetchFruits = async () => {
+  const res = await fetch("https://www.fruityvice.com/api/fruit/all");
+  return res.json();
+};
+
+const ListPage = async () => {
+  const fruits = await fetchFruits();
+  console.log(fruits);
+
   return (
     <div className="flex flex-col justify-center items-center mt-40 ">
       <h1>ALL</h1>
