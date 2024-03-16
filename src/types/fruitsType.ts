@@ -1,4 +1,4 @@
-type TFruits = {
+export type TFruits = {
   name: string;
   id: number;
   family: string;
