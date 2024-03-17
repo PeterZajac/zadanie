@@ -10,6 +10,7 @@ const SearchBar: FC = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchResult(null);
     setSearchTerm(event.target.value);
   };
 
@@ -19,14 +20,14 @@ const SearchBar: FC = () => {
     try {
       const response = await fetch(`/api/get-fruit?fruit=${searchTerm}`);
 
-      const searchFruit = await response.json();
-      if (searchFruit) {
-        setSearchResult("Success");
-        setCurrentFruit(searchFruit);
+      const searchFruit: TFruit = await response.json();
+      if (searchFruit.error) {
+        setSearchResult("Error: Fruit not found.");
+        setCurrentFruit(null);
         return;
       }
-      setSearchResult("Error: Fruit not found.");
-      setCurrentFruit(null);
+      setSearchResult("Success");
+      setCurrentFruit(searchFruit);
     } catch (error) {
       alert("Error: " + error);
     } finally {
@@ -43,11 +44,11 @@ const SearchBar: FC = () => {
   const borderClass = useMemo(() => {
     if (searchResult === "Error: Fruit not found.") {
       return "border-red-400 text-red-300";
-    } else if (searchResult === "Success") {
-      return "border-green-400 text-green-300";
-    } else {
-      return "border-neutral-700";
     }
+    if (!!searchResult) {
+      return "border-green-400 text-green-300";
+    }
+    return "border-neutral-700";
   }, [searchResult]);
 
   const finalClassName = `${inputBaseClasses} ${borderClass}`;
@@ -58,42 +59,44 @@ const SearchBar: FC = () => {
     }
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <>
       <div className="flex flex-col">
         <div className="flex">
-          <input
-            type="text"
-            className={finalClassName}
-            placeholder="Search"
-            value={searchTerm}
-            onChange={handleInputChange}
-            onKeyDown={handleKeyDown}
-          />
-          <button onClick={handleSearchFruit}>
-            <span
-              className="flex items-center pl-3 text-surface [&>svg]:h-5 [&>svg]:w-5"
-              id="button-addon2"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                />
-              </svg>
-            </span>
-          </button>
+          {!isLoading ? (
+            <>
+              <input
+                type="text"
+                className={finalClassName}
+                placeholder="Search"
+                value={searchTerm}
+                onChange={handleInputChange}
+                onKeyDown={handleKeyDown}
+              />
+              <button onClick={handleSearchFruit}>
+                <span
+                  className="flex items-center pl-3 text-surface [&>svg]:h-5 [&>svg]:w-5"
+                  id="button-addon2"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </>
+          ) : (
+            <div>Loading...</div>
+          )}
         </div>
         {searchResult === "Error: Fruit not found." && (
           <div className="mt-1">

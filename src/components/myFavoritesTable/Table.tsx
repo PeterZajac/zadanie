@@ -5,13 +5,21 @@ import React from "react";
 import { FaHeart } from "react-icons/fa";
 
 const Table = () => {
-  const data: TFruit[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+  const data: TFruit[] =
+    typeof window !== "undefined"
+      ? JSON.parse(localStorage.getItem("favorites") || "[]")
+      : [];
+
   const removeFromFavorites = (id: number) => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
     const newFavorites = favorites.filter(
       (favorite: TFruit) => favorite.id !== id
     );
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    if (typeof window !== "undefined") {
+    } else {
+      console.log("localStorage nieje k dispozicii");
+    }
   };
 
   return (
