@@ -1,4 +1,4 @@
-export type TFruits = {
+export type TFruit = {
   name: string;
   id: number;
   family: string;
@@ -11,8 +11,10 @@ export type TFruits = {
     carbohydrates: number;
     protein: number;
   };
+  error?: string;
+  image?: string;
 };
 
 export type FruitProps = {
-  data: TFruits[] | undefined;
+  data: TFruit[];
 };
