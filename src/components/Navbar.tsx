@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const NavLinks = [
+const navLinks = [
   {
     name: "SEARCH",
     href: "/",
@@ -17,6 +17,7 @@ const NavLinks = [
   {
     name: "DETAIL",
     href: "/detail",
+    isDisabled: true,
   },
 ];
 
@@ -29,9 +30,9 @@ const Navbar = () => {
   return (
     <nav className="bg-[#0a0810] flex flex-row items-center p-4">
       <div className="flex-grow flex flex-row justify-center gap-5">
-        {NavLinks.map((link) => {
+        {navLinks.map((link) => {
           return (
-            <Link href={link.href} key={link.name}>
+            <Link href={link.isDisabled ? "#" : link.href} key={link.name}>
               <h1
                 className={
                   isActive(link.href)

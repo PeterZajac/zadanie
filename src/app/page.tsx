@@ -1,15 +1,13 @@
-import MainScreen from "@/components/MainScreen";
-
-const fetchFruits = async () => {
-  const res = await fetch("https://www.fruityvice.com/api/fruit/all");
-  return res.json();
-};
+import LemonPicture from "@/components/LemonPicture";
+import SearchBar from "@/components/SearchBar";
 
 const Home = async () => {
-  const fruits = await fetchFruits();
   return (
     <div className="flex flex-col justify-center items-center mt-40">
-      <MainScreen data={fruits} />
+      <LemonPicture />
+      <h1 className="text-4xl font-bold ">SEARCH</h1>
+      <p className="mb-6">FRUIT DATABSE</p>
+      <SearchBar />
     </div>
   );
 };
