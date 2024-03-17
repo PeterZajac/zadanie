@@ -7,6 +7,7 @@ export const AddToFavorite = ({ fruit }: { fruit: TFruit }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+  //TODO odstranovanie z favorite
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
