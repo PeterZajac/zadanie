@@ -1,6 +1,4 @@
-import ListTable from "@/components/ListTable";
 import Table from "@/components/myFavoritesTable/Table";
-import React from "react";
 
 const Favorites = () => {
   return (

@@ -1,6 +1,19 @@
+"use client";
+import { TFruit } from "@/types/fruitsType";
+import Link from "next/link";
 import React from "react";
+import { FaHeart } from "react-icons/fa";
 
 const Table = () => {
+  const data: TFruit[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+  const removeFromFavorites = (id: number) => {
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    const newFavorites = favorites.filter(
+      (favorite: TFruit) => favorite.id !== id
+    );
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+  };
+
   return (
     <div className="overflow-x-auto shadow-md sm:rounded-lg w-[800px] mt-10">
       <table className="w-full text-sm text-left text-gray-400">
@@ -24,44 +37,28 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="bg-transparent">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium whitespace-nowrap text-white text-center"
-            >
-              Niečo iné
-            </th>
-            <td className="px-6 py-4">TOMATO</td>
-            <td className="px-6 py-4">SOLANUM</td>
-            <td className="px-6 py-4">SOLANALES</td>
-            <td className="px-6 py-4">
-              <a
-                href="#"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+          {data.map((fruit) => (
+            <tr key={fruit.id} className="bg-transparent">
+              <th
+                scope="row"
+                className="px-6 py-4 font-medium whitespace-nowrap text-white text-center"
               >
-                Edit
-              </a>
-            </td>
-          </tr>
-          <tr className="bg-[#1c1529]">
-            <th
-              scope="row"
-              className="px-6 py-4 font-medium whitespace-nowrap text-white text-center"
-            >
-              ---
-            </th>
-            <td className="px-6 py-4">---</td>
-            <td className="px-6 py-4">---</td>
-            <td className="px-6 py-4">---</td>
-            <td className="px-6 py-4">
-              <a
-                href="#"
-                className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-              >
-                Edit
-              </a>
-            </td>
-          </tr>
+                {fruit.id}
+              </th>
+              <td className="px-6 py-4">{fruit.name}</td>
+              <td className="px-6 py-4">{fruit.genus}</td>
+              <td className="px-6 py-4">{fruit.order}</td>
+              <td className="px-6 py-4 flex items-center gap-2">
+                <FaHeart onClick={() => removeFromFavorites(fruit.id)} />
+                <Link
+                  href={`/detail/${fruit.id}`}
+                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                >
+                  Edit
+                </Link>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
