@@ -23,7 +23,9 @@ const navLinks = [
 
 const Navbar = () => {
   const pathname = usePathname();
+
   const isActive = (href: string) => {
+    if (href === "/detail") return pathname.includes("/detail");
     return pathname === href;
   };
 
@@ -32,7 +34,11 @@ const Navbar = () => {
       <div className="flex-grow flex flex-row justify-center gap-5">
         {navLinks.map((link) => {
           return (
-            <Link href={link.isDisabled ? "#" : link.href} key={link.name}>
+            <Link
+              href={link.isDisabled ? "#" : link.href}
+              style={{ cursor: link.isDisabled ? "not-allowed" : undefined }}
+              key={link.name}
+            >
               <h1
                 className={
                   isActive(link.href)
