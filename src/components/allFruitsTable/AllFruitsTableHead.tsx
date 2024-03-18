@@ -5,10 +5,10 @@ const TableHead = () => {
     <thead className="text-xs uppercase bg-transparent text-gray-400">
       <tr>
         <th scope="col" className="px-6 pb-8 text-center">
-          ID
+          NAME
         </th>
         <th scope="col" className="px-6 pb-8">
-          NAME
+          FAMILY
         </th>
         <th scope="col" className="px-6 pb-8">
           GENUS

@@ -1,7 +1,7 @@
 import React from "react";
-import TableHead from "./allFruitsTable/TableHead";
-import TableBody from "./allFruitsTable/TableBody";
-import TableWrap from "./allFruitsTable/TableWrap";
+import TableHead from "./allFruitsTable/AllFruitsTableHead";
+import TableBody from "./allFruitsTable/AllFruitsTableBody";
+import TableWrap from "./allFruitsTable/AllFruitsTableWrap";
 import { FruitProps } from "@/types/fruitsType";
 
 const ListTable = ({ data }: FruitProps) => {

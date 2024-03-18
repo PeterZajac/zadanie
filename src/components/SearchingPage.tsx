@@ -3,7 +3,7 @@ import { TFruit } from "@/types/fruitsType";
 import Link from "next/link";
 import React, { FC, useMemo, useState } from "react";
 
-const SearchBar: FC = () => {
+const SearchingPage: FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState<string | null>(null);
   const [currentFruit, setCurrentFruit] = useState<TFruit | null>(null);
@@ -43,10 +43,10 @@ const SearchBar: FC = () => {
 
   const borderClass = useMemo(() => {
     if (searchResult === "Error: Fruit not found.") {
-      return "border-red-400 text-red-300";
+      return "border-red-500 text-red-200";
     }
     if (!!searchResult) {
-      return "border-green-400 text-green-300";
+      return "border-[#16a34a] text-green-300";
     }
     return "border-neutral-700";
   }, [searchResult]);
@@ -106,13 +106,23 @@ const SearchBar: FC = () => {
       </div>
       {currentFruit && (
         <>
-          <div className="mt-5">
-            <span className="bg-gray-800 p-5">
-              {JSON.stringify(currentFruit, null, 2)} found!
-            </span>
+          <div className="mt-5 bg-[#110d17] rounded w-46 h-46 pl-4 pr-6 py-5 custom-margin">
+            <p className="">{currentFruit.name}</p>
+            <p>
+              <span className="font-bold ">Family: </span>
+              {currentFruit.family}
+            </p>
+            <p>
+              <span className="font-bold">Order: </span>
+              {currentFruit.order}
+            </p>
+            <p>
+              <span className="font-bold">Genus: </span>
+              {currentFruit.genus}
+            </p>
           </div>
           <Link
-            className="mt-5 text-blue-500"
+            className="mt-5 text-blue-500 custom-margin"
             href={`/detail/${currentFruit.id}`}
           >
             Open detail
@@ -123,4 +133,4 @@ const SearchBar: FC = () => {
   );
 };
 
-export default SearchBar;
+export default SearchingPage;

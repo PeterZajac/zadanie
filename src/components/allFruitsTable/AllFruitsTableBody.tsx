@@ -3,7 +3,7 @@ import { FruitProps } from "@/types/fruitsType";
 import React, { useEffect, useState } from "react";
 
 const TableBody = ({ data }: FruitProps) => {
-  const PAGE_SIZE = 5;
+  const PAGE_SIZE = 8;
 
   const [page, setPage] = useState(1);
   const [displayedData, setDisplayedData] = useState(data.slice(0, PAGE_SIZE));
