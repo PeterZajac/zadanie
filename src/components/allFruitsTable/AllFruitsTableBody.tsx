@@ -4,9 +4,9 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaHeart } from "react-icons/fa";
 import PaginationButtons from "../PaginationButtons";
+import { PAGE_SIZE } from "@/constants";
 
 const TableBody = ({ data }: FruitProps) => {
-  const PAGE_SIZE = 8;
   const [favorites, setFavorites] = useState<TFruit[]>([]);
   const [page, setPage] = useState(1);
   const [displayedData, setDisplayedData] = useState(data.slice(0, PAGE_SIZE));
