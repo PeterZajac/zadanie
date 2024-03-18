@@ -1,5 +1,5 @@
 import { AddToFavorite } from "@/components/AddToFavorite";
-import { TFruit } from "@/types/fruitsType";
+import { TFruit } from "@/types/index";
 import Image from "next/image";
 import React, { FC } from "react";
 

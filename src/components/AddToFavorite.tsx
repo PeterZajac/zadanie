@@ -1,5 +1,5 @@
 "use client";
-import { TFruit } from "@/types/fruitsType";
+import { TFruit } from "@/types/index";
 import React, { useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 

@@ -18,3 +18,14 @@ export type TFruit = {
 export type FruitProps = {
   data: TFruit[];
 };
+
+export type TableWrapProps = {
+  children: React.ReactNode;
+};
+
+export type PaginationButtonsProps = {
+  handlePrevPage: () => void;
+  handleNextPage: () => void;
+  page: number;
+  totalPages: number;
+};
