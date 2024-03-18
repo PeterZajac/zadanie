@@ -18,7 +18,7 @@ const AddToFavoriteButon = ({ fruit }: { fruit: TFruit }) => {
   const buttonClass = useMemo(() => {
     return `py-2 px-4 rounded-md flex items-center gap-2 text-transparent stroke-current ${
       isFavorite
-        ? "hover:text-violet-600 text-violet-600"
+        ? "hover:text-[grey] text-violet-600"
         : "hover:text-violet-600 text-white"
     }`;
   }, [isFavorite]);

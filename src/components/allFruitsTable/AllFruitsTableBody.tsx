@@ -89,7 +89,7 @@ const TableBody = ({ data }: FruitProps) => {
                 href={`/detail/${fruit.id}`}
                 className="font-medium  hover:underline "
               >
-                <FaArrowRight />
+                <FaArrowRight className="hover:text-sky-600" />
               </Link>
             </td>
           </tr>

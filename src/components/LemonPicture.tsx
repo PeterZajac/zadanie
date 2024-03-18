@@ -4,11 +4,11 @@ import React from "react";
 const LemonPicture = () => {
   return (
     <Image
-      className="custom-margin"
+      className="custom-margin mb-10 mt-10"
       src={"/images/lemon.png"}
       alt="lemon"
-      width={200}
-      height={200}
+      width={240}
+      height={240}
     />
   );
 };
