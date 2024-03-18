@@ -31,7 +31,7 @@ export const AddToFavorite = ({ fruit }: { fruit: TFruit }) => {
   return (
     <button
       onClick={handleAddToFavorite}
-      className=" text-white py-2 px-4 rounded-md flex items-center gap-2"
+      className=" text-white py-2 px-4 rounded-md flex items-center gap-2 pt-5"
     >
       <FaRegHeart /> <span>Add to favorites</span>
     </button>

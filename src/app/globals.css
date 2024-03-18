@@ -9,3 +9,6 @@ body{
   font-family: "Inter", sans-serif !important
 }
 
+.custom-margin{
+  margin-left: -30px;
+}

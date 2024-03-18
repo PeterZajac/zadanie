@@ -3,7 +3,13 @@ import React from "react";
 
 const LemonPicture = () => {
   return (
-    <Image src={"/images/lemon.png"} alt="lemon" width={200} height={200} />
+    <Image
+      className="custom-margin"
+      src={"/images/lemon.png"}
+      alt="lemon"
+      width={200}
+      height={200}
+    />
   );
 };
 

@@ -37,13 +37,13 @@ const DetailPage: FC<DetailPageProps> = async ({ params: { id } }) => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center mt-20">
+    <div className="flex flex-col items-center justify-center mt-10">
       <h4>{fruit.name}</h4>
-      <h1 className="text-[40px] mb-10">DETAIL </h1>
+      <h1 className="text-[40px] mb-5">DETAIL </h1>
       {fruit.image && (
         <Image
           src={fruit.image}
-          className="h-60 w-60 object-cover rounded-full shadow-lg mb-5"
+          className="h-52 w-52 object-cover rounded-full shadow-lg mb-5"
           height={200}
           width={200}
           alt="Tomato image"

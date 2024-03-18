@@ -1,13 +1,13 @@
 import LemonPicture from "@/components/LemonPicture";
-import SearchBar from "@/components/SearchBar";
+import SearchingPage from "@/components/SearchingPage";
 
 const Home = async () => {
   return (
-    <div className="flex flex-col justify-center items-center mt-40">
+    <div className="flex flex-col justify-center items-center mt-20">
       <LemonPicture />
-      <h1 className="text-4xl font-bold ">SEARCH</h1>
-      <p className="mb-6">FRUIT DATABSE</p>
-      <SearchBar />
+      <h1 className="text-4xl font-bold custom-margin ">SEARCH</h1>
+      <p className="mb-6 custom-margin">FRUIT DATABSE</p>
+      <SearchingPage />
     </div>
   );
 };
