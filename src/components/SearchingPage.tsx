@@ -23,7 +23,7 @@ const SearchingPage: FC = () => {
 
       const searchFruit: TFruit = await response.json();
       if (searchFruit.error) {
-        setSearchResult("Error: Fruit not found.");
+        setSearchResult("Fruit not found");
         setCurrentFruit(null);
         return;
       }
@@ -43,11 +43,11 @@ const SearchingPage: FC = () => {
     "flex-auto rounded border border-solid border-neutral-700 bg-transparent pl-3 outline-none  placeholder:text-neutral-500";
 
   const borderClass = useMemo(() => {
-    if (searchResult === "Error: Fruit not found.") {
-      return "border-red-500 text-red-200";
+    if (searchResult === "Fruit not found") {
+      return "border-red-500 text-red-400";
     }
     if (!!searchResult) {
-      return "custom-border text-green-300";
+      return "custom-border text-green-400";
     }
     return "border-neutral-700";
   }, [searchResult]);
@@ -99,8 +99,8 @@ const SearchingPage: FC = () => {
             <div>Loading...</div>
           )}
         </div>
-        {searchResult === "Error: Fruit not found." && (
-          <div className="mt-1">
+        {searchResult === "Fruit not found" && (
+          <div className="mt-1 flex justify-start">
             <span className="text-red-500 text-sm">{searchResult}</span>
           </div>
         )}
@@ -108,7 +108,7 @@ const SearchingPage: FC = () => {
       {currentFruit && (
         <>
           <div className="mt-5 bg-[#110d17] rounded w-46 h-46 pl-4 pr-6 py-5 custom-margin">
-            <p className="">{currentFruit.name}</p>
+            <p className="mb-1 text-lg">{currentFruit.name}</p>
             <p>
               <span className="font-bold ">Family: </span>
               {currentFruit.family}
