@@ -1,17 +1,16 @@
 "use client";
-import { FruitProps, TFruit } from "@/types/fruitsType";
+import { FruitProps, TFruit } from "@/types/index";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaHeart } from "react-icons/fa";
+import PaginationButtons from "../PaginationButtons";
 
 const TableBody = ({ data }: FruitProps) => {
   const PAGE_SIZE = 8;
   const [favorites, setFavorites] = useState<TFruit[]>([]);
   const [page, setPage] = useState(1);
   const [displayedData, setDisplayedData] = useState(data.slice(0, PAGE_SIZE));
-  const [totalPages, setTotalPages] = useState(
-    Math.floor(data.length / PAGE_SIZE)
-  );
+  const totalPages = Math.floor(data.length / PAGE_SIZE);
 
   useEffect(() => {
     const storedFavoritesString = localStorage.getItem("favorites");
@@ -21,10 +20,23 @@ const TableBody = ({ data }: FruitProps) => {
     }
   }, []);
 
+  const addToFavorites = (id: number) => {
+    const fruitToAdd = data.find((fruit) => fruit.id === id);
+    if (fruitToAdd) {
+      const newFavorites = [...favorites, fruitToAdd];
+      setFavorites(newFavorites);
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    }
+  };
+
   const removeFromFavorites = (id: number) => {
     const newFavorites = favorites.filter((favorite) => favorite.id !== id);
     setFavorites(newFavorites);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites)); // Asynchronous
+    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+  };
+
+  const isFavorite = (id: number) => {
+    return favorites.some((fruit) => fruit.id === id);
   };
 
   const handleNextPage = () => {
@@ -61,8 +73,14 @@ const TableBody = ({ data }: FruitProps) => {
             <div className="flex items-center gap-3">
               <button>
                 <FaHeart
-                  className={`text-transparent stroke-[40px] hover:text-violet-600 hover:stroke-none stroke-white	text-base  hover:cursor-pointer`}
-                  onClick={() => removeFromFavorites(fruit.id)}
+                  className={`text-transparent stroke-[40px] hover:text-violet-600 hover:stroke-none stroke-white	text-base  hover:cursor-pointer ${
+                    isFavorite(fruit.id) ? "text-violet-600" : ""
+                  }`}
+                  onClick={() =>
+                    isFavorite(fruit.id)
+                      ? removeFromFavorites(fruit.id)
+                      : addToFavorites(fruit.id)
+                  }
                 />
               </button>
               <Link
@@ -75,21 +93,12 @@ const TableBody = ({ data }: FruitProps) => {
           </td>
         </tr>
       ))}
-      <button
-        onClick={handlePrevPage}
-        disabled={page === 1}
-        className="bg-transparent text-white px-4 py-2"
-      >
-        Prev
-      </button>
-      <button
-        onClick={handleNextPage}
-        disabled={page === totalPages}
-        className="bg-transparent text-white px-4 py-2"
-      >
-        Next
-      </button>
-      {page} of {totalPages}
+      <PaginationButtons
+        handlePrevPage={handlePrevPage}
+        handleNextPage={handleNextPage}
+        page={page}
+        totalPages={totalPages}
+      />
     </tbody>
   );
 };
