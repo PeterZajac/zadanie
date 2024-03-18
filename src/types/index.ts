@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type TFruit = {
   name: string;
   id: number;
@@ -28,4 +30,23 @@ export type PaginationButtonsProps = {
   handleNextPage: () => void;
   page: number;
   totalPages: number;
+};
+
+export type DetailPageProps = {
+  params: {
+    id: string;
+  };
+};
+export type PageWrapperProps = {
+  children: ReactNode;
+};
+
+export type NutritionInfoProps = {
+  nutritions: {
+    calories: number;
+    fat: number;
+    sugar: number;
+    carbohydrates: number;
+    protein: number;
+  };
 };

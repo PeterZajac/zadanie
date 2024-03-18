@@ -1,3 +1,4 @@
+import PageWrapper from "@/components/Global/PageWrapper";
 import ListTable from "@/components/ListTable";
 import React from "react";
 
@@ -10,11 +11,11 @@ const ListPage = async () => {
   const fruits = await fetchFruits();
 
   return (
-    <div className="flex flex-col justify-center items-center mt-20 ">
+    <PageWrapper>
       <h1>ALL</h1>
       <h1 className="text-4xl font-bold ">FRUIT LIST</h1>
       <ListTable data={fruits} />
-    </div>
+    </PageWrapper>
   );
 };
 

@@ -1,5 +1,5 @@
 "use client";
-import { FruitProps, TFruit } from "@/types/index";
+import { FruitProps, TFruit } from "@/types";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaHeart } from "react-icons/fa";
