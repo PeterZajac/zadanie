@@ -1,15 +1,31 @@
 "use client";
-import { FruitProps } from "@/types/fruitsType";
+import { FruitProps, TFruit } from "@/types/fruitsType";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { FaArrowRight, FaHeart } from "react-icons/fa";
 
 const TableBody = ({ data }: FruitProps) => {
   const PAGE_SIZE = 8;
-
+  const [favorites, setFavorites] = useState<TFruit[]>([]);
   const [page, setPage] = useState(1);
   const [displayedData, setDisplayedData] = useState(data.slice(0, PAGE_SIZE));
   const [totalPages, setTotalPages] = useState(
     Math.floor(data.length / PAGE_SIZE)
   );
+
+  useEffect(() => {
+    const storedFavoritesString = localStorage.getItem("favorites");
+    if (storedFavoritesString) {
+      const storedFavorites: TFruit[] = JSON.parse(storedFavoritesString);
+      setFavorites(storedFavorites);
+    }
+  }, []);
+
+  const removeFromFavorites = (id: number) => {
+    const newFavorites = favorites.filter((favorite) => favorite.id !== id);
+    setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites)); // Asynchronous
+  };
 
   const handleNextPage = () => {
     setPage((prev) => prev + 1);
@@ -42,12 +58,20 @@ const TableBody = ({ data }: FruitProps) => {
           <td className="px-6 py-4">{fruit.order}</td>
           <td className="px-6 py-4">{fruit.genus}</td>
           <td className="px-6 py-4">
-            <a
-              href={`/detail/${fruit.id}`}
-              className="font-medium text-blue-600 hover:underline"
-            >
-              Edit
-            </a>
+            <div className="flex items-center gap-3">
+              <button>
+                <FaHeart
+                  className={`text-transparent stroke-[40px] hover:text-violet-600 hover:stroke-none stroke-white	text-base  hover:cursor-pointer`}
+                  onClick={() => removeFromFavorites(fruit.id)}
+                />
+              </button>
+              <Link
+                href={`/detail/${fruit.id}`}
+                className="font-medium  hover:underline "
+              >
+                <FaArrowRight />
+              </Link>
+            </div>
           </td>
         </tr>
       ))}

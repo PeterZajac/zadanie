@@ -1,25 +1,24 @@
 "use client";
 import { TFruit } from "@/types/fruitsType";
 import Link from "next/link";
-import React from "react";
-import { FaHeart } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaRegHeart, FaHeart, FaArrowRight } from "react-icons/fa";
 
 const Table = () => {
-  const data: TFruit[] =
-    typeof window !== "undefined"
-      ? JSON.parse(localStorage.getItem("favorites") || "[]")
-      : [];
+  const [favorites, setFavorites] = useState<TFruit[]>([]);
+
+  useEffect(() => {
+    const storedFavoritesString = localStorage.getItem("favorites");
+    if (storedFavoritesString) {
+      const storedFavorites: TFruit[] = JSON.parse(storedFavoritesString);
+      setFavorites(storedFavorites);
+    }
+  }, []);
 
   const removeFromFavorites = (id: number) => {
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const newFavorites = favorites.filter(
-      (favorite: TFruit) => favorite.id !== id
-    );
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
-    if (typeof window !== "undefined") {
-    } else {
-      console.log("localStorage nieje k dispozicii");
-    }
+    const newFavorites = favorites.filter((favorite) => favorite.id !== id);
+    setFavorites(newFavorites);
+    localStorage.setItem("favorites", JSON.stringify(newFavorites)); // Asynchronous
   };
 
   return (
@@ -45,8 +44,11 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map((fruit) => (
-            <tr key={fruit.id} className="bg-transparent">
+          {favorites.map((fruit, index) => (
+            <tr
+              key={fruit.id}
+              className={index % 2 === 0 ? "bg-transparent" : "bg-[#1c1529]"}
+            >
               <th
                 scope="row"
                 className="px-6 py-4 font-medium whitespace-nowrap text-white text-center"
@@ -56,13 +58,16 @@ const Table = () => {
               <td className="px-6 py-4">{fruit.name}</td>
               <td className="px-6 py-4">{fruit.genus}</td>
               <td className="px-6 py-4">{fruit.order}</td>
-              <td className="px-6 py-4 flex items-center gap-2">
-                <FaHeart onClick={() => removeFromFavorites(fruit.id)} />
+              <td className="px-6 py-4 flex items-center gap-3">
+                <FaHeart
+                  className={`text-violet-600 hover:stroke-[40px] hover:text-transparent hover:stroke-white	text-base  hover:cursor-pointer`}
+                  onClick={() => removeFromFavorites(fruit.id)}
+                />
                 <Link
                   href={`/detail/${fruit.id}`}
-                  className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  className="font-medium  hover:underline "
                 >
-                  Edit
+                  <FaArrowRight />
                 </Link>
               </td>
             </tr>
