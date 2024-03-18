@@ -4,7 +4,6 @@ import DetailHeader from "@/components/detailPage/DetailHeader";
 import FruitImage from "@/components/detailPage/FruitImage";
 import NutritionInfo from "@/components/detailPage/NutritionInfo";
 import { DetailPageProps, TFruit } from "@/types";
-import Image from "next/image";
 import React, { FC } from "react";
 
 const fetchFruit: (id: string) => Promise<TFruit | null> = async (id) => {

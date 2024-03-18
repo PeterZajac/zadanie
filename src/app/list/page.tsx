@@ -1,3 +1,4 @@
+import Heading from "@/components/PageHeading";
 import PageWrapper from "@/components/Global/PageWrapper";
 import ListTable from "@/components/ListTable";
 import React from "react";
@@ -12,8 +13,7 @@ const ListPage = async () => {
 
   return (
     <PageWrapper>
-      <h1>ALL</h1>
-      <h1 className="text-4xl font-bold ">FRUIT LIST</h1>
+      <Heading firstText="ALL" secondText="FRUIT LIST" />
       <ListTable data={fruits} />
     </PageWrapper>
   );

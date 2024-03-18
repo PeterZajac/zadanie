@@ -50,3 +50,8 @@ export type NutritionInfoProps = {
     protein: number;
   };
 };
+
+export type HeadingProps = {
+  firstText: string;
+  secondText: string;
+};
