@@ -1,4 +1,4 @@
-import Table from "@/components/myFavoritesTable/Table";
+import Table from "@/components/myFavoritesTable/MyFavoritesTable";
 
 const Favorites = () => {
   return (

@@ -2,6 +2,7 @@
 import { TFruit } from "@/types/fruitsType";
 import Link from "next/link";
 import React, { FC, useMemo, useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 
 const SearchingPage: FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -122,9 +123,10 @@ const SearchingPage: FC = () => {
             </p>
           </div>
           <Link
-            className="mt-5 text-blue-500 custom-margin"
-            href={`/detail/${currentFruit.id}`}
+            className="mt-5  custom-margin flex items-center gap-2"
+            href={`/detail/${currentFruit.name}`}
           >
+            <FaArrowRight />
             Open detail
           </Link>
         </>
