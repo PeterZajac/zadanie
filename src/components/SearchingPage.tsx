@@ -123,7 +123,7 @@ const SearchingPage: FC = () => {
             </p>
           </div>
           <Link
-            className="mt-5 custom-margin flex items-center gap-2"
+            className="mt-5 custom-margin flex items-center gap-2 text-white hover:text-violet-600 "
             href={`/detail/${currentFruit.name}`}
           >
             <FaArrowRight />
