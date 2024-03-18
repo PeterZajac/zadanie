@@ -1,8 +1,5 @@
 import React from "react";
-
-type TableWrapProps = {
-  children: React.ReactNode;
-};
+import { TableWrapProps } from "@/types/tableWapProps";
 
 const TableWrap: React.FC<TableWrapProps> = ({ children }) => {
   return (
