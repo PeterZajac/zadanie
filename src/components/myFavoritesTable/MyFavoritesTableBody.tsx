@@ -70,14 +70,20 @@ const MyFavoritesBody = () => {
           </tr>
         ))}
       </tbody>
-      {favorites.length > PAGE_SIZE && (
-        <PaginationButtons
-          handlePrevPage={handlePrevPage}
-          handleNextPage={handleNextPage}
-          page={page}
-          totalPages={totalPages}
-        />
-      )}
+      <tfoot>
+        <tr>
+          <td colSpan={5}>
+            {favorites.length > PAGE_SIZE && (
+              <PaginationButtons
+                handlePrevPage={handlePrevPage}
+                handleNextPage={handleNextPage}
+                page={page}
+                totalPages={totalPages}
+              />
+            )}
+          </td>
+        </tr>
+      </tfoot>
     </>
   );
 };

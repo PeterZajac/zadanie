@@ -12,3 +12,7 @@ body{
 .custom-margin{
   margin-left: -30px;
 }
+
+.custom-border{
+  border-color: #22c55e
+}

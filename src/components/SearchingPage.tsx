@@ -47,7 +47,7 @@ const SearchingPage: FC = () => {
       return "border-red-500 text-red-200";
     }
     if (!!searchResult) {
-      return "border-green-500 text-green-300";
+      return "custom-border text-green-300";
     }
     return "border-neutral-700";
   }, [searchResult]);

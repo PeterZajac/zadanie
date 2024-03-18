@@ -74,7 +74,7 @@ const TableBody = ({ data }: FruitProps) => {
               <button>
                 <FaHeart
                   className={`text-transparent stroke-[40px] hover:text-violet-600 hover:stroke-none stroke-white	text-base  hover:cursor-pointer ${
-                    isFavorite(fruit.id) ? "text-violet-600 stroke-inherit" : ""
+                    isFavorite(fruit.id) ? "text-violet-600 stroke-none" : ""
                   }`}
                   onClick={() =>
                     isFavorite(fruit.id)
@@ -93,12 +93,18 @@ const TableBody = ({ data }: FruitProps) => {
           </tr>
         ))}
       </tbody>
-      <PaginationButtons
-        handlePrevPage={handlePrevPage}
-        handleNextPage={handleNextPage}
-        page={page}
-        totalPages={totalPages}
-      />
+      <tfoot>
+        <tr>
+          <td colSpan={5}>
+            <PaginationButtons
+              handlePrevPage={handlePrevPage}
+              handleNextPage={handleNextPage}
+              page={page}
+              totalPages={totalPages}
+            />
+          </td>
+        </tr>
+      </tfoot>
     </>
   );
 };
