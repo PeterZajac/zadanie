@@ -1,22 +1,11 @@
 "use client";
 import { TFruit } from "@/types/fruitsType";
-import React, { useEffect, useMemo, useState } from "react";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import React, { useState } from "react";
+import { FaRegHeart } from "react-icons/fa";
 
 export const AddToFavorite = ({ fruit }: { fruit: TFruit }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-
-  const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-  //TODO odstranovanie z favorite
-
-  useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const isInLocalStorage = favorites.find(
-      (favorite: TFruit) => favorite.id === fruit.id
-    );
-    setIsFavorite(!!isInLocalStorage);
-  }, [fruit.id]);
-
+  //TODO like button have to change color when is in favorites
   const handleAddToFavorite = () => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
     const isInLocalStorage = favorites.find(
@@ -25,7 +14,6 @@ export const AddToFavorite = ({ fruit }: { fruit: TFruit }) => {
     if (isInLocalStorage) return;
     const newFavorites = [...favorites, fruit];
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
-    setIsFavorite(true);
   };
 
   return (
