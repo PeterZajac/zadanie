@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   console.log(req);
-  // get the fruit name from the query string
   const fruitName = req.nextUrl.searchParams.get("fruit");
 
   if (!fruitName) {
