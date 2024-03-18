@@ -16,3 +16,6 @@ body{
 .custom-border{
   border-color: #22c55e
 }
+.custom-stroke-none{
+  stroke: none;
+}

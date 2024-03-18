@@ -23,7 +23,7 @@ const navLinks = [
 
 const Navbar = () => {
   const pathname = usePathname();
-
+  console.log(pathname);
   const isActive = (href: string) => {
     if (href === "/detail") return pathname.includes("/detail");
     return pathname === href;
@@ -53,13 +53,14 @@ const Navbar = () => {
         })}
       </div>
       <Link href="/favorites" className="flex items-right">
-        {" "}
-        {/* Maintain flex for icon alignment */}
         <FontAwesomeIcon
           icon={faHeart}
-          className="text-white hover:text-gray-200"
-        />{" "}
-        {/* Style the icon */}
+          className={
+            pathname === "/favorites"
+              ? "text-violet-600"
+              : "text-white hover:text-violet-600"
+          }
+        />
       </Link>
     </nav>
   );

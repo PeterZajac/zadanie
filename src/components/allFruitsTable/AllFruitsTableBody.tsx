@@ -74,7 +74,9 @@ const TableBody = ({ data }: FruitProps) => {
               <button>
                 <FaHeart
                   className={`text-transparent stroke-[40px] hover:text-violet-600 hover:stroke-none stroke-white	text-base  hover:cursor-pointer ${
-                    isFavorite(fruit.id) ? "text-violet-600 stroke-none" : ""
+                    isFavorite(fruit.id)
+                      ? "text-violet-600 custom-stroke-none"
+                      : ""
                   }`}
                   onClick={() =>
                     isFavorite(fruit.id)
