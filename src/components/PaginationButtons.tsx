@@ -14,7 +14,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
   totalPages,
 }) => {
   return (
-    <div className="flex justify-between items-center">
+    <span className="flex justify-between items-center">
       <button
         onClick={handlePrevPage}
         disabled={page === 1}
@@ -32,7 +32,7 @@ const PaginationButtons: React.FC<PaginationButtonsProps> = ({
       >
         Next
       </button>
-    </div>
+    </span>
   );
 };
 

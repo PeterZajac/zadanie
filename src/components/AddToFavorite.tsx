@@ -1,27 +1,50 @@
 "use client";
 import { TFruit } from "@/types/index";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaRegHeart } from "react-icons/fa";
+import { useMemo } from "react";
 
 export const AddToFavorite = ({ fruit }: { fruit: TFruit }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  //TODO like button have to change color when is in favorites
-  const handleAddToFavorite = () => {
+
+  useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-    const isInLocalStorage = favorites.find(
+    const isInLocalStorage = favorites.some(
       (favorite: TFruit) => favorite.id === fruit.id
     );
-    if (isInLocalStorage) return;
-    const newFavorites = [...favorites, fruit];
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    setIsFavorite(isInLocalStorage);
+  }, [fruit.id]);
+
+  const buttonClass = useMemo(() => {
+    return `py-2 px-4 rounded-md flex items-center gap-2 text-transparent stroke-current ${
+      isFavorite
+        ? "hover:text-violet-600 text-violet-600"
+        : "hover:text-violet-600 text-white"
+    }`;
+  }, [isFavorite]);
+
+  const handleToggleFavorite = () => {
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+    const isInLocalStorage = favorites.some(
+      (favorite: TFruit) => favorite.id === fruit.id
+    );
+    if (isInLocalStorage) {
+      const newFavorites = favorites.filter(
+        (favorite: TFruit) => favorite.id !== fruit.id
+      );
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      setIsFavorite(false);
+    } else {
+      const newFavorites = [...favorites, fruit];
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+      setIsFavorite(true);
+    }
   };
 
   return (
-    <button
-      onClick={handleAddToFavorite}
-      className=" text-white py-2 px-4 rounded-md flex items-center gap-2 pt-5"
-    >
-      <FaRegHeart /> <span>Add to favorites</span>
+    <button onClick={handleToggleFavorite} className={buttonClass}>
+      <FaRegHeart />
+      <span>{isFavorite ? "Remove from favorites" : "Add to favorites"}</span>
     </button>
   );
 };

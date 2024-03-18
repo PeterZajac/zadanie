@@ -54,27 +54,27 @@ const TableBody = ({ data }: FruitProps) => {
   }, [page, data]);
 
   return (
-    <tbody>
-      {displayedData?.map((fruit, index) => (
-        <tr
-          key={fruit.id}
-          className={index % 2 === 0 ? "bg-transparent" : "bg-[#1c1529]"}
-        >
-          <th
-            scope="row"
-            className="px-6 py-4 font-medium whitespace-nowrap text-white text-center"
+    <>
+      <tbody>
+        {displayedData?.map((fruit, index) => (
+          <tr
+            key={fruit.id}
+            className={index % 2 === 0 ? "bg-transparent" : "bg-[#1c1529]"}
           >
-            {fruit.name}
-          </th>
-          <td className="px-6 py-4">{fruit.family}</td>
-          <td className="px-6 py-4">{fruit.order}</td>
-          <td className="px-6 py-4">{fruit.genus}</td>
-          <td className="px-6 py-4">
-            <div className="flex items-center gap-3">
+            <th
+              scope="row"
+              className="px-6 py-4 font-medium whitespace-nowrap text-white text-center"
+            >
+              {fruit.name}
+            </th>
+            <td className="px-6 py-4">{fruit.family}</td>
+            <td className="px-6 py-4">{fruit.order}</td>
+            <td className="px-6 py-4">{fruit.genus}</td>
+            <td className="px-6 py-4 flex items-center gap-3">
               <button>
                 <FaHeart
                   className={`text-transparent stroke-[40px] hover:text-violet-600 hover:stroke-none stroke-white	text-base  hover:cursor-pointer ${
-                    isFavorite(fruit.id) ? "text-violet-600" : ""
+                    isFavorite(fruit.id) ? "text-violet-600 stroke-none" : ""
                   }`}
                   onClick={() =>
                     isFavorite(fruit.id)
@@ -89,17 +89,17 @@ const TableBody = ({ data }: FruitProps) => {
               >
                 <FaArrowRight />
               </Link>
-            </div>
-          </td>
-        </tr>
-      ))}
+            </td>
+          </tr>
+        ))}
+      </tbody>
       <PaginationButtons
         handlePrevPage={handlePrevPage}
         handleNextPage={handleNextPage}
         page={page}
         totalPages={totalPages}
       />
-    </tbody>
+    </>
   );
 };
 

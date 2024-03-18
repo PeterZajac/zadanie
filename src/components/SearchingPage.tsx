@@ -47,7 +47,7 @@ const SearchingPage: FC = () => {
       return "border-red-500 text-red-200";
     }
     if (!!searchResult) {
-      return "border-[#16a34a] text-green-300";
+      return "border-green text-green-300";
     }
     return "border-neutral-700";
   }, [searchResult]);
@@ -123,7 +123,7 @@ const SearchingPage: FC = () => {
             </p>
           </div>
           <Link
-            className="mt-5  custom-margin flex items-center gap-2"
+            className="mt-5 custom-margin flex items-center gap-2"
             href={`/detail/${currentFruit.name}`}
           >
             <FaArrowRight />

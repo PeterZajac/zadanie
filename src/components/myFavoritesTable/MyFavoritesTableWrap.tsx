@@ -1,5 +1,5 @@
 import React from "react";
-import { TableWrapProps } from "@/types/tableWapProps";
+import { TableWrapProps } from "@/types/index";
 
 const MyFavoritesTableWrap: React.FC<TableWrapProps> = ({ children }) => {
   return (

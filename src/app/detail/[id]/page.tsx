@@ -46,6 +46,7 @@ const DetailPage: FC<DetailPageProps> = async ({ params: { id } }) => {
           className="h-52 w-52 object-cover rounded-full shadow-lg mb-5"
           height={200}
           width={200}
+          priority={true}
           alt="Tomato image"
         />
       )}

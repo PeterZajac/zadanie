@@ -1,6 +1,6 @@
 import React from "react";
-import MyFavoritesHead from "./MyFavoritesHead";
-import MyFavoritesBody from "./MyFavoritesBody";
+import MyFavoritesHead from "./MyFavoritesTableHead";
+import MyFavoritesBody from "./MyFavoritesTableBody";
 import MyFavoritesTableWrap from "./MyFavoritesTableWrap";
 
 const Table = () => {
