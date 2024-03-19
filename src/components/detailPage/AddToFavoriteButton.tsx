@@ -28,17 +28,11 @@ const AddToFavoriteButon = ({ fruit }: { fruit: TFruit }) => {
     const isInLocalStorage = favorites.some(
       (favorite: TFruit) => favorite.id === fruit.id
     );
-    if (isInLocalStorage) {
-      const newFavorites = favorites.filter(
-        (favorite: TFruit) => favorite.id !== fruit.id
-      );
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
-      setIsFavorite(false);
-    } else {
-      const newFavorites = [...favorites, fruit];
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
-      setIsFavorite(true);
-    }
+    const dataToSave = isInLocalStorage
+      ? favorites.filter((favorite: TFruit) => favorite.id !== fruit.id)
+      : [...favorites, fruit];
+    localStorage.setItem("favorites", JSON.stringify(dataToSave));
+    setIsFavorite(!isInLocalStorage);
   };
 
   return (

@@ -1,5 +1,4 @@
 import Heading from "@/components/PageHeading";
-import PageWrapper from "@/components/Global/PageWrapper";
 import ListTable from "@/components/ListTable";
 import React from "react";
 
@@ -12,10 +11,10 @@ const ListPage = async () => {
   const fruits = await fetchFruits();
 
   return (
-    <PageWrapper>
+    <>
       <Heading firstText="ALL" secondText="FRUIT LIST" />
       <ListTable data={fruits} />
-    </PageWrapper>
+    </>
   );
 };
 

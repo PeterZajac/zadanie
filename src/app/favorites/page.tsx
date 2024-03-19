@@ -1,13 +1,12 @@
 import Heading from "@/components/PageHeading";
-import PageWrapper from "@/components/Global/PageWrapper";
-import Table from "@/components/myFavoritesTable/MyFavoritesTable";
+import Table from "@/components/MyFavoritesTable/MyFavoritesTable";
 
 const Favorites = () => {
   return (
-    <PageWrapper>
+    <>
       <Heading firstText="MY" secondText="FAVORITES" />
       <Table />
-    </PageWrapper>
+    </>
   );
 };
 

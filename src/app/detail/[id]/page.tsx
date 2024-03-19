@@ -1,8 +1,7 @@
-import AddToFavoriteButon from "@/components/detailPage/AddToFavoriteButton";
-import PageWrapper from "@/components/Global/PageWrapper";
-import DetailHeader from "@/components/detailPage/DetailHeader";
-import FruitImage from "@/components/detailPage/FruitImage";
-import NutritionInfo from "@/components/detailPage/NutritionInfo";
+import AddToFavoriteButon from "@/components/DetailPage/AddToFavoriteButton";
+import DetailHeader from "@/components/DetailPage/DetailHeader";
+import FruitImage from "@/components/DetailPage/FruitImage";
+import NutritionInfo from "@/components/DetailPage/NutritionInfo";
 import { DetailPageProps, TFruit } from "@/types";
 import React, { FC } from "react";
 
@@ -31,12 +30,12 @@ const DetailPage: FC<DetailPageProps> = async ({ params: { id } }) => {
     return <h1>404: Not found</h1>;
   }
   return (
-    <PageWrapper>
+    <>
       <DetailHeader fruitName={fruit.name} />
       <FruitImage imageUrl={fruit.image || ""} />
       <NutritionInfo nutritions={fruit.nutritions} />
       <AddToFavoriteButon fruit={fruit} />
-    </PageWrapper>
+    </>
   );
 };
 

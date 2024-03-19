@@ -1,5 +1,5 @@
 import React from "react";
-import { TableWrapProps } from "@/types/tableWapProps";
+import { TableWrapProps } from "@/types";
 
 const TableWrap: React.FC<TableWrapProps> = ({ children }) => {
   return (
